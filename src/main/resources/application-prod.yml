@@ -1,0 +1,40 @@
+# Production Configuration
+# Use this profile for production deployments
+
+spring:
+  profiles:
+    active: prod
+
+  application:
+    name: timesheet-management-system
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  datasource:
+    url: jdbc:h2:mem:timesheetdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: false
+
+jwt:
+  secret: ${JWT_SECRET:mySecretKeyForJWTTokenGenerationAndValidationPurposesOnlyDoNotShareThis}
+  expiration: ${JWT_EXPIRATION:86400000}
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: WARN
+    com.timesheet.management: INFO

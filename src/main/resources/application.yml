@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: timesheet-management-system
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  datasource:
+    url: jdbc:h2:mem:timesheetdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  sql:
+    init:
+      platform: h2
+
+jwt:
+  secret: mySecretKeyForJWTTokenGenerationAndValidationPurposesOnlyDoNotShareThis
+  expiration: 86400000  # 24 hours in milliseconds
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    com.timesheet.management: DEBUG
